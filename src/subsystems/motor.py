@@ -10,7 +10,9 @@ class Motor(PIDSubsystem):
         super().__init__(2, 0, 0, name='Motor')
 
         self.motor = wpilib.TalonSRX(robotmap.portsList.motorID)
+
         self.encoder = wpilib.Encoder(*robotmap.portsList.encoderID)
+        self.encoder.setDistancePerPulse(robotmap.portsList.encodersDistancePerPulse)
 
     def initDefaultCommand(self):
         pass
