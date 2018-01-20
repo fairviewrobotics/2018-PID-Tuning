@@ -1,6 +1,8 @@
 import wpilib
 from wpilib.command.pidsubsystem import PIDSubsystem
 
+import ctre
+
 import robotmap
 
 
@@ -9,9 +11,9 @@ class Motor(PIDSubsystem):
     def __init__(self):
         super().__init__(2, 0, 0, name='Motor')
 
-        self.motor = wpilib.TalonSRX(robotmap.portsList.motorID)
+        self.motor = ctre.WPI_TalonSRX(1)
 
-        self.encoder = wpilib.Encoder(*robotmap.portsList.encoderID)
+        self.encoder = wpilib.Encoder(0, 1)
         self.encoder.setDistancePerPulse(robotmap.portsList.encodersDistancePerPulse)
 
     def initDefaultCommand(self):
